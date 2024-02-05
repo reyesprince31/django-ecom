@@ -1,0 +1,69 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block description %}This is my description{% endblock  %}
+{% block robots %}index, follow{% endblock  %}
+{% block keywords %}modern black suit, myshop{% endblock  %}
+
+{% block css %}{% static "css/style.css" %}{% endblock  %}
+{% block title %} My Shop {% endblock %} 
+
+
+{% block body %}
+  <!-- ***************** header ***************** -->
+  {% include "includes/nav.html" %}
+
+  <!-- ***************** main content ***************** -->
+  <section id="intro">
+      <div style="width: 50%;">
+          <h1>Best Clothing Quality</h1>   
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis porro quam fugiat accusantium ab velit tenetur perspiciatis autem, ipsa obcaecati at blanditiis? Unde, consectetur itaque nemo modi consequuntur obcaecati accusantium?</p>
+          <a onclick="hideNav()">Become a member</a>
+      </div>
+
+      <video controls>
+          <source src="{% static "video/intro-video.mp4" %}">
+      </video>
+  </section>
+  
+
+  <!-- ***************** Category ***************** 
+  <nav id="nav-cat">
+      <a>Suit</a>
+      <a>Shirt</a>
+      <a>Dress</a>
+      <a>Shoes</a>
+  </nav>
+  -->
+  
+  <!-- ***************** Product card ***************** -->
+  <div class="product-nav">
+      <h3>Suits</h3>
+      <a href="{% url "product" "suit" %}">View all suits</a>
+  </div>
+  <main id="products-intro">
+    {% for product in products  %}
+       
+
+    <div class="product-card">
+        <div class="review-con"><p>Reviews 4.8⭐</p></div>
+        <img src="{{product.image.url}}" class="product-img">
+        <div style="padding:20px 25px">
+            <h3>{{product.title}}</h3>
+            <p>{{product.description}}</p>
+            <a href="">View Product</a>
+        </div>
+    </div>
+
+    {% endfor %}
+
+  </main>
+
+
+  <!-- ***************** Footer ***************** -->
+  <footer>
+      <h2>This is my footer.</h2>
+  </footer>
+  {% comment %} <script type="text/javascript" src="index.js" ></script> {% endcomment %}
+
+{% endblock %}
