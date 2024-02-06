@@ -1,16 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
-from .models import Product
+from .models import Product, Brand
 
 def index(request):
     user = 'prince'
     products_number = 4
-    products = Product.objects.all().order_by('-id')[:2]
+    products = Product.objects.all().order_by('-id')[:4]
+
+    for product in products:
+        print(product.brand)
+
     return render(request, 'products/home.html', {
         'name': user,
         'products_number': products_number,
-        'products': products
+        'products': products,
+    
     })
 
 def signup(request):
